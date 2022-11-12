@@ -1,0 +1,32 @@
+{
+  "fields": [
+    {
+      "name": "order_id",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "quantity",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "item_name",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "choice_description",
+      "type": "string",
+      "format": "default"
+    },
+    {
+      "name": "item_price",
+      "type": "string",
+      "format": "default"
+    }
+  ],
+  "missingValues": [
+    ""
+  ]
+}

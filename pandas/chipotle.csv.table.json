@@ -1,0 +1,58 @@
+{
+  "columns": [
+    {
+      "minWidth": 40,
+      "download": false,
+      "formatter": "rowSelection",
+      "titleFormatter": "rowSelection",
+      "resizable": true,
+      "headerSort": false,
+      "width": 51
+    },
+    {
+      "field": "order_id",
+      "title": "order_id",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 107
+    },
+    {
+      "field": "quantity",
+      "title": "quantity",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 107
+    },
+    {
+      "field": "item_name",
+      "title": "item_name",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 240
+    },
+    {
+      "field": "choice_description",
+      "title": "choice_description",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 813
+    },
+    {
+      "field": "item_price",
+      "title": "item_price",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 120
+    }
+  ]
+}
