@@ -1,5 +1,0 @@
-#%%
-import sympy as sp
-
-
-# %%
