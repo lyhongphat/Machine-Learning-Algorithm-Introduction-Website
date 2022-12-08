@@ -1,8 +1,8 @@
 import numpy as np
 from matplotlib import pyplot as plt
+import streamlit as st
 
-
-def main():
+def executeThisFunction():
     x = np.linspace(-5, 5, 100)
     y = x**2 + 10*np.sin(x)
     plt.plot(x, y)
@@ -41,7 +41,7 @@ def main():
     plt.fill_between(x, y, -10)
 
     plt.axis([-6, 6, -10, 40])
-    plt.show()
+    st.pyplot(plt)
 
 if __name__ == '__main__':
-    main()
+    executeThisFunction()
