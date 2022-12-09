@@ -7,11 +7,15 @@ from sklearn.inspection import DecisionBoundaryDisplay
 
 import matplotlib.pyplot as plt
 import numpy as np
+import streamlit as st
+import os
+from PIL import Image
 
 np.random.seed(100)
 N = 150
 
-def main():
+def executeThisFunction():
+    plt.clf()
     centers = [[2, 2], [7, 7]]
     n_classes = len(centers)
     data, labels = make_blobs(n_samples=N, 
@@ -125,8 +129,63 @@ def main():
 
     plt.legend(['Nhom 0', 'Nhom 1'])
 
-    plt.show()    
+    # plt.show()
 
+    st.pyplot(plt)
+    code = '''centers = [[2, 2], [7, 7]]
+    n_classes = len(centers)
+    data, labels = make_blobs(n_samples=N, 
+                            centers=np.array(centers),
+                            random_state=1)'''
+    st.code(code, language="python")
+    st.write("Sử dụng make_blobs để tạo các đốm màu với phân phối Gaussian. Bạn có thể kiểm soát số lượng đốm màu sẽ tạo và số lượng mẫu sẽ tạo, cũng như một loạt các thuộc tính khác.")
 
-if __name__ == '__main__':
-    main()
+    code = '''    for i in range(0, N):
+        if labels[i] == 0:
+            nhom_0.append([data[i,0], data[i,1]])
+        elif labels[i] == 1:
+            nhom_1.append([data[i,0], data[i,1]])'''
+    st.code(code, language="python")
+    st.write("Thêm phần tử cho 2 mảng nhom_0 và nhom_1")
+
+    code = '''svc = LinearSVC(C = 100, loss="hinge", random_state=42, max_iter = 100000)'''
+    st.code(code, language="python")
+    st.write("LinearSVC là một thuật toán cố gắng tìm một siêu phẳng để tối đa hóa khoảng cách giữa các mẫu được phân loại.")
+
+    code = '''predicted = svc.predict(test_data)
+    sai_so = accuracy_score(test_labels, predicted)
+    print('sai so:', sai_so)'''
+    st.code(code, language="python")
+    st.write("Dùng svc.predict() để dự đoán d liệu và tính được sai số bằng cách sài hàm accuracy_score")
+    code = '''w = he_so[0]
+    a = -w[0] / w[1]
+    xx = np.linspace(2, 7, 100)
+    yy = a * xx - intercept[0] / w[1]
+
+    plt.plot(xx, yy, 'b')'''
+    st.code(code, language="python")
+    st.write("Vẽ đồ thị bằng cách dữ liệu từ a, xx, yy")
+
+    code = '''decision_function = svc.decision_function(train_data)
+    support_vector_indices = np.where(np.abs(decision_function) <= 1 + 1e-15)[0]
+    support_vectors = train_data[support_vector_indices]
+    support_vectors_x = support_vectors[:,0]
+    support_vectors_y = support_vectors[:,1]'''
+    st.code(code, language="python")
+    st.write("Output của svc.decision_function là 1 hàm decision cho thấy được chúng ta đang ở gần đường boundary như thế nào. Càng gần thì độ tin cậy càng thấp")
+
+    code = '''vi_tri_min = np.argmin(distance)
+    min_val = np.min(distance)'''
+    st.code(code, language="python")
+    st.write("Tìm được vị trí của điểm xa nhất và gàn nhất của điểm đối với boundary")
+
+    code = '''vi_tri = []
+    for i in range(0, SIZE):
+        if (distance[i] - min_val) <= 1.0E-3:
+            print(distance[i]) 
+            vi_tri.append(i)'''
+    st.code(code, language="python")
+    st.write("Sử dụng mang vi_tri để lưu tất cả các điểm cách điểm gần đường boundary nhất một khoảng nhỏ hơn 1.0E-3")
+
+# if __name__ == '__main__':
+#     executeThisFunction()

@@ -1,13 +1,4 @@
-import sys
-import tkinter
-from io import StringIO
-import cv2
-import numpy as np
-import pandas as pd
-from PIL import Image
-
 from subprocess import call
-
 
 def open_my_file(fileOpen):
     call(["python", fileOpen])
@@ -16,14 +7,9 @@ def open_my_file(fileOpen):
 import streamlit as st
 from streamlit_option_menu import option_menu
 
-import GiamDanDaoHam.Bai01 as GDDH_01
-import GiamDanDaoHam.Bai02 as GDDH_02
-import GiamDanDaoHam.Bai02a as GDDH_2a
-import GiamDanDaoHam.Bai03 as GDDH_03
-import GiamDanDaoHam.Bai04 as GDDH_04
-import GiamDanDaoHam.Bai05 as GDDH_05
-import GiamDanDaoHam.temp as GDDH_temp
-import GiamDanDaoHamMomentum.Bai01 as GDDHM_01
+import GiamDanDaoHam.Sumary
+import GiamDanDaoHamMomentum.Sumary
+import SVM.Sumary
 
 
 class Main():
@@ -49,106 +35,15 @@ class Main():
             import End_to_End_Project.Sumary
             End_to_End_Project.Sumary.display()
 
+        # ============================================================================
         elif selected == 'Gradient descent':
-            st.title("Giam dan dao ham")
-            col1, col2 = st.columns([0.5, 0.5], gap="large")
-            with col1:
-                option = st.selectbox("Function", (
-                    "None", "Bai01", 'Bai02', "Bai02a", "Bai03", "Bai04", "Bai05", "Temp"))
+            GiamDanDaoHam.Sumary.display()
 
-                if option == "None":
-                    st.write("Vui lòng chọn option!")
-                else:
-                    st.write("")
-                if option == "Bai01":
-                    st.write(
-                        "A negative of an image is an image where its lightest areas appear as darkest and the darkest areas appear as lightest.")
-                    st.write(
-                        "The appearance change from lightest to darkest and darkest to lightest is basically done in gray scale image and refers to the change of pixel intensity values from highest to lowest and lowest to highest.")
-                if option == "Bai02":
-                    st.write(
-                        "A negative of an image is an image where its lightest areas appear as darkest and the darkest areas appear as lightest.")
-                    st.write(
-                        "The appearance change from lightest to darkest and darkest to lightest is basically done in gray scale image and refers to the change of pixel intensity values from highest to lowest and lowest to highest.")
-                if option == "Bai02a":
-                    st.write(
-                        "A negative of an image is an image where its lightest areas appear as darkest and the darkest areas appear as lightest.")
-                    st.write(
-                        "The appearance change from lightest to darkest and darkest to lightest is basically done in gray scale image and refers to the change of pixel intensity values from highest to lowest and lowest to highest.")
-                if option == "Bai03":
-                    st.write(
-                        "A negative of an image is an image where its lightest areas appear as darkest and the darkest areas appear as lightest.")
-                    st.write(
-                        "The appearance change from lightest to darkest and darkest to lightest is basically done in gray scale image and refers to the change of pixel intensity values from highest to lowest and lowest to highest.")
-                if option == "Bai04":
-                    st.write(
-                        "A negative of an image is an image where its lightest areas appear as darkest and the darkest areas appear as lightest.")
-                    st.write(
-                        "The appearance change from lightest to darkest and darkest to lightest is basically done in gray scale image and refers to the change of pixel intensity values from highest to lowest and lowest to highest.")
-                if option == "Bai05":
-                    st.write(
-                        "A negative of an image is an image where its lightest areas appear as darkest and the darkest areas appear as lightest.")
-                    st.write(
-                        "The appearance change from lightest to darkest and darkest to lightest is basically done in gray scale image and refers to the change of pixel intensity values from highest to lowest and lowest to highest.")
-                if option == "Temp":
-                    st.write(
-                        "A negative of an image is an image where its lightest areas appear as darkest and the darkest areas appear as lightest.")
-                    st.write(
-                        "The appearance change from lightest to darkest and darkest to lightest is basically done in gray scale image and refers to the change of pixel intensity values from highest to lowest and lowest to highest.")
-
-            with col2:
-                if option == "Bai01":
-                    # self.onGiamDanDaoHamBai01()
-                    GDDH_01.executeThisFunction()
-                if option == "Bai02":
-                    # self.onGiamDanDaoHamBai01()
-                    GDDH_02.executeThisFunction()
-                if option == "Bai02a":
-                    # self.onGiamDanDaoHamBai01()
-                    GDDH_2a.executeThisFunction()
-                if option == "Bai03":
-                    # self.onGiamDanDaoHamBai01()
-                    GDDH_03.executeThisFunction()
-                if option == "Bai04":
-                    # self.onGiamDanDaoHamBai01()
-                    GDDH_04.executeThisFunction()
-                if option == "Bai05":
-                    # self.onGiamDanDaoHamBai01()
-                    GDDH_05.executeThisFunction()
-                if option == "Temp":
-                    # self.onGiamDanDaoHamBai01()
-                    GDDH_temp.executeThisFunction()
-
+        # ============================================================================
         elif selected == 'Gradient descent momentum':
-            st.title("Giam dam dao ham momentum")
+            GiamDanDaoHamMomentum.Sumary.display()
 
-            # click = st.button('Negative')
-            # if click:
-            #     st.text("Click there!")
-            # st.button('Logarit')
-            # st.button('Power')
-            col1, col2 = st.columns([0.5, 0.5], gap="large")
-            with col1:
-                option = st.selectbox("Function", (
-                    "None", "Bai01"))
-
-                if option == "None":
-                    st.write("Vui lòng chọn option!")
-                else:
-                    st.write("")
-                if option == "Bai01":
-                    st.write(
-                        "A negative of an image is an image where its lightest areas appear as darkest and the darkest areas appear as lightest.")
-                    st.write(
-                        "The appearance change from lightest to darkest and darkest to lightest is basically done in gray scale image and refers to the change of pixel intensity values from highest to lowest and lowest to highest.")
-            with col2:
-                if option == "None":
-                    st.write("")
-                if option == "Bai01":
-                    # self.onGiamDanDaoHamBai01()
-                    GDDHM_01.executeThisFunction()
-
-
+        # ============================================================================
         elif selected == 'Linear regression':
             import HoiQuy.Sumary
             HoiQuy.Sumary.display()
@@ -164,11 +59,11 @@ class Main():
 
         # ============================================================================
         elif selected == 'SVM':
-            st.title("SVM")
+            SVM.Sumary.display()
 
         # ============================================================================
         else:
-            st.title('Nhận diện phép toán')
+            st.title('')
 
         # st.file_uploader("Hello", type=None, accept_multiple_files=False, key=None, help=None, on_change=None, args=None, kwargs=None,  disabled=False, label_visibility="visible")
 
@@ -176,8 +71,6 @@ class Main():
     #     with open(runfile, "r") as rnf:
     #         exec(rnf.read())
 
-    def onGiamDanDaoHamBai01(self):
-        open_my_file("GiamDanDaoHam\\Bai01.py")
 
 
 p = Main()
