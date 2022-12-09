@@ -7,6 +7,7 @@ import streamlit as st
 
 
 def executeThisFunction():
+    plt.clf()
     np.random.seed(100)
     N = 1000
     X = np.random.rand(N)
@@ -87,6 +88,60 @@ def executeThisFunction():
     ax.set_ylabel("w")
     st.pyplot(plt)
 
-if __name__ == "__main__":
-    executeThisFunction()
+    code = '''N = 1000
+    X = np.random.rand(N)
+    y = 4 + 3 * X + .5 * np.random.randn(N)'''
+    st.code(code, language='python')
+    st.write("Khởi tạo các bộ sinh số ngẫu nhiên với 1000 phần tử X tương ứng tới 1000 phần tử Y với giá trị theo công thức tính")
+    st.write("")
+    st.write("")
+    code = '''model = LinearRegression()'''
+    st.code(code, language = "python")
+    st.write("Sử dụng LinearRegression để train model với tập dữ liệu X,Y vừa tạo")
+
+    code = '''Xbar = np.concatenate((one, X.reshape(-1, 1)), axis=1)'''
+    st.code(code, language="python")
+    st.write("Kết hợp các mảng numpy lại với nhau")
+
+    code = '''    def grad(w):
+        N = Xbar.shape[0]
+        return 1 / N * Xbar.T.dot(Xbar.dot(w) - y)
+
+    def cost(w):
+        N = Xbar.shape[0]
+        return .5 / N * np.linalg.norm(y - Xbar.dot(w)) ** 2
+
+    def myGD(w_init, eta):
+        w = [w_init]
+        for it in range(100):
+            w_new = w[-1] - eta * grad(w[-1])
+            if np.linalg.norm(grad(w_new)) / len(w_new) < 1e-3:
+                break
+            w.append(w_new)
+        return (w, it)'''
+    st.code(code, language = "python")
+    st.write("Đây là hàm grad(), cost(), myGD")
+
+    code = '''temp = w1[1]
+    bb = temp[0]
+    ww = temp[1]
+    zz = cost(temp)
+    ax.plot3D(bb, ww, zz, 'ro', markersize=3)
+
+    temp = w1[2]
+    bb = temp[0]
+    ww = temp[1]
+    zz = cost(temp)
+    ax.plot3D(bb, ww, zz, 'ro', markersize=3)
+
+    temp = w1[3]
+    bb = temp[0]
+    ww = temp[1]
+    zz = cost(temp)
+    ax.plot3D(bb, ww, zz, 'ro', markersize=3)'''
+    st.code(code, language = "python")
+    st.write("Với mỗi mảng temp, ta phải tìm ra được giá trị cho bb, ww, zz. Từ đó có thể vẽ được ax.plot3D. Như trên hình ta thấy có dấu chấm đỏ là biểu hiện của hàm này")
+
+
+
 
