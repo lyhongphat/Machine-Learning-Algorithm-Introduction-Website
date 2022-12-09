@@ -10,11 +10,11 @@ def display():
         import HoiQuy.Theory
         HoiQuy.Theory.display()
     with tab2:
-        st.title("Ví dụ minh họa")
+        st.title("Ví dụ hồi quy tuyến tính")
         import HoiQuy.Bai01
         HoiQuy.Bai01.display()
     with tab3:
-        st.title("Ví dụ minh họa")
+        st.title("Ví dụ đường hồi quy tuyến tính")
         import HoiQuy.Bai02
         HoiQuy.Bai02.display()
     with tab4:

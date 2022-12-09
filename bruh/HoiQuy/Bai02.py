@@ -29,3 +29,9 @@ def display():
 
     ax.plot(x, y)
     st.pyplot(fig)
+
+def displayDemo():
+    pass
+
+def displayDes():
+    pass
