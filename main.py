@@ -1,11 +1,3 @@
-import sys
-import tkinter
-from io import StringIO
-import cv2
-import numpy as np
-import pandas as pd
-from PIL import Image
-
 from subprocess import call
 
 
