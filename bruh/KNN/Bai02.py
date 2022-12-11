@@ -49,7 +49,7 @@ def executeThisFunction():
         image = image.reshape((8, 8)).astype("uint8")
 
         image = exposure.rescale_intensity(image, out_range=(0, 255))
-        image = imutils.resize(image, width=32, inter=cv2.INTER_CUBIC)
+        # image = imutils.resize(image, width=32, inter=cv2.INTER_CUBIC)
 
         # show the prediction
         print("I think that digit is: {}".format(prediction))
