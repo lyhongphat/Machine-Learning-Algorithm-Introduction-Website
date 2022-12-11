@@ -22,9 +22,9 @@ model = KNeighborsClassifier()
 model.fit(trainData, trainLabels)
 
 # save model, sau này ta sẽ load model để dùng
-if os.path.exists("Model/knn_mnist.pkl"):
-    os.remove("Model/knn_mnist.pkl")
-joblib.dump(model, "Model/knn_mnist.pkl")
+# if os.path.exists("bruh/KNN/Model/knn_mnist.pkl"):
+#     os.remove("bruh/KNN/Model/knn_mnist.pkl")
+joblib.dump(model, "bruh/KNN/knn_mnist.pkl")
 
 # Đánh giá trên tập validation
 predicted = model.predict(valData)
