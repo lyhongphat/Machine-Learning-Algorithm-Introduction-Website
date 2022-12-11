@@ -16,14 +16,15 @@ class Main:
     @staticmethod
     def initUI():
         with st.sidebar:
+            # noinspection PyStatementEffect
             selected = option_menu("Main Menu",
                                    [
                                        "Machine Learning",
                                        "Linear regression",
                                        "Overfitting",
+                                       "KNN",
                                        'Gradient descent',
                                        'Gradient descent momentum',
-                                       "KNN",
                                        "SVM",
                                        "End to end project"],
                                    icons=['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣'],
