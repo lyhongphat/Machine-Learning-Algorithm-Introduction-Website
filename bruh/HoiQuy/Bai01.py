@@ -11,7 +11,7 @@ def display():
 def displayDes():
     st.markdown \
         ("""
-        ## Bảng dữ liệu
+        ### Bảng dữ liệu
 
 Ta có bảng dữ liệu tương quan chiều cao và cân nặng như sau
 
@@ -39,7 +39,7 @@ Ta thấy rằng dữ liệu được sắp xếp gần như 1 đường thẳng
 
 (cân nặng) = $w_1$*(chiều cao) + $w_0$
 
-## Nghiệm theo công thức
+### Nghiệm theo công thức
 
 Tiếp theo, chúng ta sẽ tính toán các hệ số $w_1$ và $w_0$ theo công thức trên
 
