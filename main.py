@@ -9,14 +9,16 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 
-class Main():
+class Main:
     def __init__(self):
         self.initUI()
 
-    def initUI(self):
+    @staticmethod
+    def initUI():
         with st.sidebar:
             selected = option_menu("Main Menu",
                                    [
+                                       "Machine Learning",
                                        "Linear regression",
                                        "Overfitting",
                                        'Gradient descent',
@@ -24,13 +26,19 @@ class Main():
                                        "KNN",
                                        "SVM",
                                        "End to end project"],
-                                   icons=['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣'],
-                                   menu_icon="cast", default_index=1)
+                                   icons=['0️⃣', '1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣'],
+                                   menu_icon="cast", default_index=0)
+            # noinspection PyStatementEffect
             selected
 
         if selected == "End to end project":
             import bruh.End_to_End_Project.Sumary
             bruh.End_to_End_Project.Sumary.display()
+
+        # ============================================================================
+        elif selected == 'Machine Learning':
+            import bruh.MachineLearning.Sumary
+            bruh.MachineLearning.Sumary.display()
 
         # ============================================================================
         elif selected == 'Gradient descent':

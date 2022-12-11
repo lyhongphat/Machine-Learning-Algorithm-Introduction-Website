@@ -6,6 +6,7 @@ def display():
 
     tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
         ["Các khái niệm", "Ví dụ 1", "Ví dụ 2", "Ví dụ 3", "Ví dụ 4", "Ví dụ 5"])
+
     with tab1:
         import bruh.HoiQuy.Theory as theory
         theory.display()

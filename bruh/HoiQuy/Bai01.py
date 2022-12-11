@@ -11,29 +11,53 @@ def display():
 def displayDes():
     st.markdown \
         ("""
-                ## Mô tả
-        Ta có tập dữ liệu mẫu tương quan giữa chiều cao và cân nặng như sau:
+        ## Bảng dữ liệu
 
-        | Chiều cao | 147 | 150 | 153 | 158 | 163 | 165 | 168 | 170 | 173 | 175 | 178 | 180 | 183 |
-        | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-        | Cân nặng | 49 | 50 | 51 | 54 | 58 | 59 | 60 | 62 | 63 | 64 | 66 | 67 | 68 |
-                """)
+Ta có bảng dữ liệu tương quan chiều cao và cân nặng như sau
 
-    st.code \
-        ("""
-        import numpy as np
+| Chiều cao | 147 | 150 | 153 | 158 | 163 | 165 | 168 | 170 | 173 | 175 | 178 | 180 | 183 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Cân nặng | 49 | 50 | 51 | 54 | 58 | 59 | 60 | 62 | 63 | 64 | 66 | 67 | 68 |
+
+Trước tiên ta cần khai báo dữ liệu training:
+
+Dữ liệu chiều cao lưu trong mảng X và cân nặng trong mảng y
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
 
 # height (cm), input Data, each row is a Data point
 X = np.array([[147, 150, 153, 158, 163, 165, 168, 170, 173, 175, 178, 180, 183]])
-one = np.ones((1, X.shape[1]))
-Xbar = np.concatenate((one, X), axis=0)  # each point is one row
+# weight (kg)
 y = np.array([[49, 50, 51, 54, 58, 59, 60, 62, 63, 64, 66, 67, 68]]).T
+```
+
+Các điểm dữ liệu được minh họa bởi các điểm màu đỏ trong `Ví dụ 2` 
+
+Ta thấy rằng dữ liệu được sắp xếp gần như 1 đường thẳng, vậy mô hình Hồi quy tuyến tính sau đây có khả năng cho kết quả tốt
+
+(cân nặng) = $w_1$*(chiều cao) + $w_0$
+
+## Nghiệm theo công thức
+
+Tiếp theo, chúng ta sẽ tính toán các hệ số $w_1$ và $w_0$ theo công thức trên
+
+Giả định nghịch đảo của một ma trận A trong python sẽ được tính bằng hàm numpy.linalg.pinv(A)
+
+```python
 A = np.dot(Xbar, Xbar.T)
 b = np.dot(Xbar, y)
 w = np.dot(np.linalg.pinv(A), b)
 # weights
 w_0, w_1 = w[0], w[1]
+print(w_0, w_1)
+```
+
+Chúng ta thấy rằng kết quả dự đoán khá gần với số liệu thực tế.
         """)
+
+
 
 
 def displayDemo():
@@ -64,7 +88,7 @@ def displayDemo():
     x_input = 0
     x_input = st.number_input("Nhập chiều cao để dự đoán cân nặng: ")
 
-    if (x_input < 100):
+    if x_input < 100:
         st.warning("Chiều cao phải lớn hơn 100")
     else:
         y_output = w_1 * x_input + w_0
