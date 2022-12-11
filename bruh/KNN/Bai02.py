@@ -5,7 +5,6 @@ from sklearn.model_selection import train_test_split
 from sklearn import datasets
 from skimage import exposure
 import numpy as np
-import imutils
 import cv2
 import sklearn
 import streamlit as st
