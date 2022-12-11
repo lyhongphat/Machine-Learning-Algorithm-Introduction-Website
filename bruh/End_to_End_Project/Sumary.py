@@ -77,7 +77,6 @@ def trainingClick(algorithm):
         st.success("Đã xong")
 
     # msg = st.success("Đã training xong")
-    pass
 
 
 def tab4Display():

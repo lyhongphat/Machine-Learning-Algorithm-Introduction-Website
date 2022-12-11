@@ -96,9 +96,9 @@ def training():
     final_model = rnd_search.best_estimator_
 
     # save model
-    if os.path.exists("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_grid_search.pkl"):
-        os.remove("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_grid_search.pkl")
-    joblib.dump(final_model, "bruh/End_to_End_Project/CaliHousing/Model/forest_reg_grid_search.pkl")
+    if os.path.exists("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_rand_search.pkl"):
+        os.remove("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_rand_search.pkl")
+    joblib.dump(final_model, "bruh/End_to_End_Project/CaliHousing/Model/forest_reg_rand_search.pkl")
 
     # Prediction
     some_data = housing.iloc[:5]
