@@ -81,4 +81,5 @@ def trainingClick(algorithm):
 
 
 def tab4Display():
-    pass
+    import bruh.End_to_End_Project.Testing as test
+    test.display()

@@ -44,7 +44,7 @@ def display_scores(scores):
     print("Standard deviation: %.2f" % (scores.std()))
 
 
-housing = pd.read_csv("../Data/housing.csv")
+housing = pd.read_csv("bruh/End_to_End_Project/CaliHousing/Data/housing.csv")
 # Them column income_cat dung de chia Data
 housing["income_cat"] = pd.cut(housing["median_income"],
                                bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
@@ -56,6 +56,7 @@ for train_index, test_index in split.split(housing, housing["income_cat"]):
     strat_test_set = housing.loc[test_index]
 
 # Chia xong thi delete column income_cat
+# noinspection PyUnboundLocalVariable
 for set_ in (strat_train_set, strat_test_set):
     set_.drop("income_cat", axis=1, inplace=True)
 
@@ -83,7 +84,7 @@ param_grid = [{'n_estimators': [3, 10, 30], 'max_features': [2, 4, 6, 8]},
               {'bootstrap': [False], 'n_estimators': [3, 10], 'max_features': [2, 3, 4]},
               ]
 # load model
-final_model = joblib.load("../Model/forest_reg_grid_search.pkl")
+final_model = joblib.load("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_grid_search.pkl")
 
 # Prediction
 some_data = housing.iloc[:5]

@@ -16,11 +16,14 @@ from sklearn.model_selection import cross_val_score
 
 rooms_ix, bedrooms_ix, population_ix, households_ix = 3, 4, 5, 6
 
+
 class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
-    def __init__(self, add_bedrooms_per_room = True): # no *args or **kargs
+    def __init__(self, add_bedrooms_per_room=True):  # no *args or **kargs
         self.add_bedrooms_per_room = add_bedrooms_per_room
+
     def fit(self, X, y=None):
-        return self # nothing else to do
+        return self  # nothing else to do
+
     def transform(self, X, y=None):
         rooms_per_household = X[:, rooms_ix] / X[:, households_ix]
         population_per_household = X[:, population_ix] / X[:, households_ix]
@@ -35,7 +38,8 @@ def display_scores(scores):
     print("Mean: %.2f" % (scores.mean()))
     print("Standard deviation: %.2f" % (scores.std()))
 
-housing = pd.read_csv("../Data/housing.csv")
+
+housing = pd.read_csv("bruh/End_to_End_Project/CaliHousing/Data/housing.csv")
 # Them column income_cat dung de chia Data
 housing["income_cat"] = pd.cut(housing["median_income"],
                                bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
@@ -47,6 +51,7 @@ for train_index, test_index in split.split(housing, housing["income_cat"]):
     strat_test_set = housing.loc[test_index]
 
 # Chia xong thi delete column income_cat
+# noinspection PyUnboundLocalVariable
 for set_ in (strat_train_set, strat_test_set):
     set_.drop("income_cat", axis=1, inplace=True)
 
@@ -56,24 +61,23 @@ housing_labels = strat_train_set["median_house_value"].copy()
 housing_num = housing.drop("ocean_proximity", axis=1)
 
 num_pipeline = Pipeline([
-        ('imputer', SimpleImputer(strategy="median")),
-        ('attribs_adder', CombinedAttributesAdder()),
-        ('std_scaler', StandardScaler()),
-    ])
+    ('imputer', SimpleImputer(strategy="median")),
+    ('attribs_adder', CombinedAttributesAdder()),
+    ('std_scaler', StandardScaler()),
+])
 
 num_attribs = list(housing_num)
 cat_attribs = ["ocean_proximity"]
 full_pipeline = ColumnTransformer([
-        ("num", num_pipeline, num_attribs),
-        ("cat", OneHotEncoder(), cat_attribs),
-    ])
+    ("num", num_pipeline, num_attribs),
+    ("cat", OneHotEncoder(), cat_attribs),
+])
 
 housing_prepared = full_pipeline.fit_transform(housing)
 
 # Load model lin_reg to use
 lin_reg = LinearRegression()
-lin_reg = joblib.load("../Model/model_lin_reg.pkl")
-
+lin_reg = joblib.load("bruh/End_to_End_Project/CaliHousing/Model/model_lin_reg.pkl")
 
 # Prediction
 some_data = housing.iloc[:5]
