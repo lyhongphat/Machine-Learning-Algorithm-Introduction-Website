@@ -1,6 +1,9 @@
+import streamlit as st
+
 import numpy as np
 import pandas as pd
 import joblib
+import streamlit
 
 from sklearn.compose import ColumnTransformer
 from sklearn.model_selection import StratifiedShuffleSplit
@@ -36,8 +39,8 @@ class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
 
 # noinspection PyShadowingNames
 def display_scores(scores):
-    print("Mean: %.2f" % (scores.mean()))
-    print("Standard deviation: %.2f" % (scores.std()))
+    st.write("Độ lệch chuẩn: %.2f" % (scores.mean()))
+    st.write("Độ lệch chuẩn: %.2f" % (scores.std()))
 
 
 def testing():
@@ -80,29 +83,28 @@ def testing():
     # Load model lin_reg to use
     lin_reg = LinearRegression()
     # noinspection PyRedeclaration
-    # lin_reg = joblib.load("bruh/End_to_End_Project/CaliHousing/Model/model_lin_reg.pkl")
-    lin_reg = joblib.load("https://drive.google.com/file/d/1xHulscM-koDIbSY6G6NQRCOfCFKtAwhQ/view?usp=share_link")
+    lin_reg = joblib.load("bruh/End_to_End_Project/CaliHousing/Model/model_lin_reg.pkl")
 
     # Prediction
     some_data = housing.iloc[:5]
     some_labels = housing_labels.iloc[:5]
     some_data_prepared = full_pipeline.transform(some_data)
     # Prediction 5 samples
-    print("Predictions:", lin_reg.predict(some_data_prepared))
-    print("Labels:", list(some_labels))
-    print('\n')
+    st.write("Phỏng đoán:", lin_reg.predict(some_data_prepared))
+    st.write("Nhãn:", list(some_labels))
+    st.write('\n')
 
     # Tính sai số bình phương trung bình trên tập dữ liệu huấn luyện
     housing_predictions = lin_reg.predict(housing_prepared)
     mse_train = mean_squared_error(housing_labels, housing_predictions)
     rmse_train = np.sqrt(mse_train)
-    print('Sai so binh phuong trung binh - train:')
-    print('%.2f' % rmse_train)
+    st.write('Sai số bình phương trung bình - train:')
+    st.write('%.2f' % rmse_train)
 
     # Tính sai số bình phương trung bình trên tập dữ liệu kiểm định chéo (cross-validation)
     scores = cross_val_score(lin_reg, housing_prepared, housing_labels, scoring="neg_mean_squared_error", cv=10)
 
-    print('Sai so binh phuong trung binh - cross-validation:')
+    st.write('Sai số bình phương trung bình - cross-validation:')
     rmse_cross_validation = np.sqrt(-scores)
     display_scores(rmse_cross_validation)
 
@@ -114,14 +116,13 @@ def testing():
 
     mse_test = mean_squared_error(y_test, y_predictions)
     rmse_test = np.sqrt(mse_test)
-    print('Sai so binh phuong trung binh - test:')
-    print('%.2f' % rmse_test)
+    st.write('Sai số bình phương trung bình - test:')
+    st.write('%.2f' % rmse_test)
 
     displayCode()
 
 
 def displayCode():
-    import streamlit as st
     st.header("Code:")
     st.markdown("""## `Linear Regression`
 
@@ -162,8 +163,8 @@ class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
 
 # noinspection PyShadowingNames
 def display_scores(scores):
-    print("Mean: %.2f" % (scores.mean()))
-    print("Standard deviation: %.2f" % (scores.std()))
+    st.write("Mean: %.2f" % (scores.mean()))
+    st.write("Standard deviation: %.2f" % (scores.std()))
 
 housing = pd.read_csv("bruh/End_to_End_Project/CaliHousing/Data/housing.csv")
 # Them column income_cat dung de chia Data
@@ -211,21 +212,21 @@ some_data = housing.iloc[:5]
 some_labels = housing_labels.iloc[:5]
 some_data_prepared = full_pipeline.transform(some_data)
 # Prediction 5 samples 
-print("Predictions:", lin_reg.predict(some_data_prepared))
-print("Labels:", list(some_labels))
-print('\n')
+st.write("Predictions:", lin_reg.predict(some_data_prepared))
+st.write("Labels:", list(some_labels))
+st.write('\n')
 
 # Tính sai số bình phương trung bình trên tập dữ liệu huấn luyện
 housing_predictions = lin_reg.predict(housing_prepared)
 mse_train = mean_squared_error(housing_labels, housing_predictions)
 rmse_train = np.sqrt(mse_train)
-print('Sai so binh phuong trung binh - train:')
-print('%.2f' % rmse_train)
+st.write('Sai so binh phuong trung binh - train:')
+st.write('%.2f' % rmse_train)
 
 # Tính sai số bình phương trung bình trên tập dữ liệu kiểm định chéo (cross-validation) 
 scores = cross_val_score(lin_reg, housing_prepared, housing_labels, scoring="neg_mean_squared_error", cv=10)
 
-print('Sai so binh phuong trung binh - cross-validation:')
+st.write('Sai so binh phuong trung binh - cross-validation:')
 rmse_cross_validation = np.sqrt(-scores)
 display_scores(rmse_cross_validation)
 
@@ -237,6 +238,6 @@ y_predictions = lin_reg.predict(X_test_prepared)
 
 mse_test = mean_squared_error(y_test, y_predictions)
 rmse_test = np.sqrt(mse_test)
-print('Sai so binh phuong trung binh - test:')
-print('%.2f' % rmse_test)
+st.write('Sai so binh phuong trung binh - test:')
+st.write('%.2f' % rmse_test)
 ```""")

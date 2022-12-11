@@ -14,7 +14,6 @@ def display():
          ])
 
     st.button(label="Testing", on_click=testingClick(algo2))
-    st.header("Code: ")
 
 
 def testingClick(algorithm):
