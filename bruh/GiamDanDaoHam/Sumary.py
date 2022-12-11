@@ -1,8 +1,7 @@
 import streamlit as st
 
 def display():
-    st.title("""Ví dụ minh họa""")
-    st.header("""Gradient Descent""")
+    st.title("""Gradient Descent""")
 
     # lyThuyet ,tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Các khái niệm", "Ví dụ 1", "Ví dụ 2", "Ví dụ 3", "Ví dụ 4", "Ví dụ 5", "Ví dụ 6", "Ví dụ 7"])
     tab_titles = ["Các khái niệm", "Ví dụ 1", "Ví dụ 2", "Ví dụ 2a", "Ví dụ 3", "Ví dụ 4", "Ví dụ 5", "Temp"]

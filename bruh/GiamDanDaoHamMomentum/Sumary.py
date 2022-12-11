@@ -5,8 +5,7 @@ import bruh.GiamDanDaoHamMomentum.Bai01 as GDDHM_01
 import bruh.GiamDanDaoHamMomentum.Theory as GDDHM_LT
 
 def display():
-    st.title("""Ví dụ minh họa""") 
-    st.header("""Gradient Descent Momentum""")
+    st.title("""Gradient Descent Momentum""")
 
     lyThuyet ,tab1 = st.tabs(["Các khái niệm", "Ví dụ "])
     with lyThuyet:
