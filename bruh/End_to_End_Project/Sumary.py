@@ -18,7 +18,8 @@ def display():
 
 
 def tab1Display():
-    st.title("Mô tả bài toán")
+    import bruh.End_to_End_Project.Description as des
+    des.display()
 
 
 def tab2Display():
@@ -41,6 +42,9 @@ def tab3Display():
          ])
 
     st.button(label="Training", on_click=trainingClick(algo))
+    st.header("Code: ")
+    import bruh.End_to_End_Project.Training as tr
+    tr.display(algo)
 
 
 def trainingClick(algorithm):

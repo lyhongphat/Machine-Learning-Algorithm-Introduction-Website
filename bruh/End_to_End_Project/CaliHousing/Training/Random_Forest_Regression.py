@@ -52,6 +52,7 @@ def training():
         strat_test_set = housing.loc[test_index]
 
     # Chia xong thi delete column income_cat
+    # noinspection PyUnboundLocalVariable
     for set_ in (strat_train_set, strat_test_set):
         set_.drop("income_cat", axis=1, inplace=True)
 

@@ -1,5 +1,6 @@
 pip==22.3.1
 scikit-learn==1.2.0
+scikit-image
 opencv-python
 h5py
 numpy
@@ -11,5 +12,6 @@ imutils
 pandas
 streamlit
 streamlit_option_menu
+joblib
 keras==2.11.0
 tensorflow==2.11.0
