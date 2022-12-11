@@ -4,6 +4,7 @@ import streamlit as st
 
 
 
+
 def executeThisFunction():
     plt.clf()
     x = np.linspace(-2, 2, 21)
