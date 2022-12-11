@@ -137,7 +137,7 @@ Vì mục đích này có nhiều chỉ số mà chúng ta cần tham khảo
 
 Công thức tính `R^2` sẽ bằng :
         """, unsafe_allow_html=True)
-    st.image("bruh/assets/images/linearReg/2.jfif")
+    st.markdown("""$R^2 = \\frac{TSS - RSS}{TSS}$""")
     st.markdown \
         ("""
         - **Tổng các diện tích (TSS)**: TSS là một phép đo tổng biến thiên trong tỷ lệ đáp ứng / biến phụ thuộc `Y` và có thể được coi là số lượng biến thiên vốn có trong đáp ứng trước khi hồi quy được thực hiện.
