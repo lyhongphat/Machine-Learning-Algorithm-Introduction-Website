@@ -6,7 +6,7 @@ def display():
     st.title("""Ví dụ minh họa""")
     st.header("""Dự đoán giá nhà Cali Housing""")
 
-    tab1, tab2, tab3, tab4 = st.tabs(["Mô tả", "Dữ liệu", "Training", "Test"])
+    tab1, tab2, tab3, tab4, tab5 = st.tabs(["Mô tả", "Dữ liệu", "Training", "Test", "So sánh"])
     with tab1:
         tab1Display()
     with tab2:
@@ -15,6 +15,9 @@ def display():
         tab3Display()
     with tab4:
         tab4Display()
+    with tab5:
+        import bruh.End_to_End_Project.Compare as com
+        com.display()
 
 
 def tab1Display():
