@@ -46,7 +46,7 @@ def display_scores(scores):
 
 
 def training():
-    housing = pd.read_csv("../Data/housing.csv")
+    housing = pd.read_csv("bruh/End_to_End_Project/CaliHousing/Data/housing.csv")
     # Them column income_cat dung de chia Data
     housing["income_cat"] = pd.cut(housing["median_income"],
                                    bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
@@ -96,9 +96,9 @@ def training():
     final_model = rnd_search.best_estimator_
 
     # save model
-    if os.path.exists("../Model/forest_reg_grid_search.pkl"):
-        os.remove("../Model/forest_reg_grid_search.pkl")
-    joblib.dump(final_model, "../Model/forest_reg_grid_search.pkl")
+    if os.path.exists("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_grid_search.pkl"):
+        os.remove("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_grid_search.pkl")
+    joblib.dump(final_model, "bruh/End_to_End_Project/CaliHousing/Model/forest_reg_grid_search.pkl")
 
     # Prediction
     some_data = housing.iloc[:5]

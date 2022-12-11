@@ -51,15 +51,30 @@ def trainingClick(algorithm):
     # msg = st.warning("Chờ training nè, hơi lâu đấy")
 
     if algorithm == "Linear Regression":
-        pass
+        import bruh.End_to_End_Project.CaliHousing.Training.Linear_Regression as train
+        with st.spinner("Training..."):
+            train.training()
+        st.success("Đã xong")
     elif algorithm == "Decision tree Regression":
-        pass
+        import bruh.End_to_End_Project.CaliHousing.Training.Decision_Tree_Regression as train
+        with st.spinner("Training..."):
+            train.training()
+        st.success("Đã xong")
     elif algorithm == "Random forest Regression":
-        pass
+        import bruh.End_to_End_Project.CaliHousing.Training.Random_Forest_Regression as train
+        with st.spinner("Training..."):
+            train.training()
+        st.success("Đã xong")
     elif algorithm == "Random forest Regression - Grid search":
-        pass
+        import bruh.End_to_End_Project.CaliHousing.Training.Random_Forest_Regression_Grid_Search_CV as train
+        with st.spinner("Training..."):
+            train.training()
+        st.success("Đã xong")
     elif algorithm == "Random forest Regression - Random search":
-        pass
+        import bruh.End_to_End_Project.CaliHousing.Training.Random_Forest_Regression_Random_Search_CV as train
+        with st.spinner("Training..."):
+            train.training()
+        st.success("Đã xong")
 
     # msg = st.success("Đã training xong")
     pass

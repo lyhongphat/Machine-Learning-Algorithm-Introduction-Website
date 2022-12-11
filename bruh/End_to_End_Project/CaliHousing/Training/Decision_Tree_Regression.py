@@ -44,7 +44,7 @@ def display_scores(scores):
 
 
 def training():
-    housing = pd.read_csv("../Data/housing.csv")
+    housing = pd.read_csv("bruh/End_to_End_Project/CaliHousing/Data/housing.csv")
     # Them column income_cat dung de chia Data
     housing["income_cat"] = pd.cut(housing["median_income"],
                                    bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
@@ -56,6 +56,7 @@ def training():
         strat_test_set = housing.loc[test_index]
 
     # Chia xong thi delete column income_cat
+    # noinspection PyUnboundLocalVariable
     for set_ in (strat_train_set, strat_test_set):
         set_.drop("income_cat", axis=1, inplace=True)
 
@@ -84,9 +85,9 @@ def training():
     tree_reg.fit(housing_prepared, housing_labels)
 
     # save model
-    if os.path.exists("../Model/deci_tree_reg.pkl"):
-        os.remove("../Model/deci_tree_reg.pkl")
-    joblib.dump(tree_reg, "../Model/deci_tree_reg.pkl")
+    if os.path.exists("bruh/End_to_End_Project/CaliHousing/Model/deci_tree_reg.pkl"):
+        os.remove("bruh/End_to_End_Project/CaliHousing/Model/deci_tree_reg.pkl")
+    joblib.dump(tree_reg, "bruh/End_to_End_Project/CaliHousing/Model/deci_tree_reg.pkl")
 
     # Prediction
     some_data = housing.iloc[:5]

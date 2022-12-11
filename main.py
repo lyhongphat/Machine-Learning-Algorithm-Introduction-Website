@@ -58,6 +58,8 @@ class Main:
         # ============================================================================
         elif selected == 'KNN':
             st.title("KNN")
+            from bruh.KNN import Sumary
+            Sumary.display()
 
         # ============================================================================
         elif selected == 'Overfitting':

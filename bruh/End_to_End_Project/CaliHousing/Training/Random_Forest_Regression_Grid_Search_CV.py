@@ -21,11 +21,14 @@ from sklearn.model_selection import GridSearchCV
 
 rooms_ix, bedrooms_ix, population_ix, households_ix = 3, 4, 5, 6
 
+
 class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
-    def __init__(self, add_bedrooms_per_room = True): # no *args or **kargs
+    def __init__(self, add_bedrooms_per_room=True):  # no *args or **kargs
         self.add_bedrooms_per_room = add_bedrooms_per_room
+
     def fit(self, X, y=None):
-        return self # nothing else to do
+        return self  # nothing else to do
+
     def transform(self, X, y=None):
         rooms_per_household = X[:, rooms_ix] / X[:, households_ix]
         population_per_household = X[:, population_ix] / X[:, households_ix]
@@ -35,12 +38,14 @@ class CombinedAttributesAdder(BaseEstimator, TransformerMixin):
         else:
             return np.c_[X, rooms_per_household, population_per_household]
 
+
 def display_scores(scores):
     print("Mean: %.2f" % (scores.mean()))
     print("Standard deviation: %.2f" % (scores.std()))
 
+
 def training():
-    housing = pd.read_csv("../Data/housing.csv")
+    housing = pd.read_csv("bruh/End_to_End_Project/CaliHousing/Data/housing.csv")
     # Them column income_cat dung de chia Data
     housing["income_cat"] = pd.cut(housing["median_income"],
                                    bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
@@ -62,23 +67,23 @@ def training():
     housing_num = housing.drop("ocean_proximity", axis=1)
 
     num_pipeline = Pipeline([
-            ('imputer', SimpleImputer(strategy="median")),
-            ('attribs_adder', CombinedAttributesAdder()),
-            ('std_scaler', StandardScaler()),
-        ])
+        ('imputer', SimpleImputer(strategy="median")),
+        ('attribs_adder', CombinedAttributesAdder()),
+        ('std_scaler', StandardScaler()),
+    ])
 
     num_attribs = list(housing_num)
     cat_attribs = ["ocean_proximity"]
     full_pipeline = ColumnTransformer([
-            ("num", num_pipeline, num_attribs),
-            ("cat", OneHotEncoder(), cat_attribs),
-        ])
+        ("num", num_pipeline, num_attribs),
+        ("cat", OneHotEncoder(), cat_attribs),
+    ])
 
     housing_prepared = full_pipeline.fit_transform(housing)
 
     param_grid = [{'n_estimators': [3, 10, 30], 'max_features': [2, 4, 6, 8]},
                   {'bootstrap': [False], 'n_estimators': [3, 10], 'max_features': [2, 3, 4]},
-                 ]
+                  ]
     # Training
     forest_reg = RandomForestRegressor(random_state=42)
     grid_search = GridSearchCV(forest_reg, param_grid, cv=5,
@@ -89,9 +94,9 @@ def training():
 
     # save model
     # save model
-    if os.path.exists("../Model/forest_reg_rand_search.pkl"):
-        os.remove("../Model/forest_reg_rand_search.pkl")
-    joblib.dump(final_model , "../Model/forest_reg_rand_search.pkl")
+    if os.path.exists("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_rand_search.pkl"):
+        os.remove("bruh/End_to_End_Project/CaliHousing/Model/forest_reg_rand_search.pkl")
+    joblib.dump(final_model, "bruh/End_to_End_Project/CaliHousing/Model/forest_reg_rand_search.pkl")
 
     # Prediction
     some_data = housing.iloc[:5]
@@ -126,4 +131,3 @@ def training():
     rmse_test = np.sqrt(mse_test)
     print('Sai so binh phuong trung binh - test:')
     print('%.2f' % rmse_test)
-

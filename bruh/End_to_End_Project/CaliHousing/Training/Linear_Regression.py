@@ -42,7 +42,7 @@ def display_scores(scores):
 
 
 def training():
-    housing = pd.read_csv("../Data/housing.csv")
+    housing = pd.read_csv("bruh/End_to_End_Project/CaliHousing/Data/housing.csv")
     # Them column income_cat dung de chia Data
     housing["income_cat"] = pd.cut(housing["median_income"],
                                    bins=[0., 1.5, 3.0, 4.5, 6., np.inf],
@@ -84,9 +84,9 @@ def training():
 
     # Save model lin_reg
     # save model
-    if os.path.exists("../Model/model_lin_reg.pkl"):
-        os.remove("../Model/model_lin_reg.pkl")
-    joblib.dump(lin_reg, "../Model/model_lin_reg.pkl")
+    if os.path.exists("bruh/End_to_End_Project/CaliHousing/Model/model_lin_reg.pkl"):
+        os.remove("bruh/End_to_End_Project/CaliHousing/Model/model_lin_reg.pkl")
+    joblib.dump(lin_reg, "bruh/End_to_End_Project/CaliHousing/Model/model_lin_reg.pkl")
 
     # Prediction
     some_data = housing.iloc[:5]
