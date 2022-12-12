@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import datasets
 from skimage import exposure
 import numpy as np
-import cv2
+
 import sklearn
 import streamlit as st
 import os
@@ -49,7 +49,7 @@ def executeThisFunction():
         image = image.reshape((8, 8)).astype("uint8")
 
         image = exposure.rescale_intensity(image, out_range=(0, 255))
-        image = imutils.resize(image, width=32, inter=cv2.INTER_CUBIC)
+        # image = imutils.resize(image, width=32, inter=cv2.INTER_CUBIC)
 
         # show the prediction
         print("I think that digit is: {}".format(prediction))
@@ -61,7 +61,7 @@ def executeThisFunction():
         # st.image(image, caption='Output', use_column_width=True)
         # st.pyplot(image)
 
-        cv2.waitKey(0)
+
     code = '''mnist = datasets.load_digits()'''
     st.code(code, language ="python")
     st.write("Hàm load_digits() giúp tải và trả về tập dữ liệu chữ số. Phân loại này chứa các điểm dữ liệu, trong đó mỗi điểm dữ liệu là một hình ảnh 8X8 của một chữ số")
