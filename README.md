@@ -1,4 +1,4 @@
-# finalProject_MachineLearning
+# Machine Learning Algorithm Introduction Website
 
 # Môn học: Học máy
 
